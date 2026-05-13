@@ -20,12 +20,14 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  const int capacity = 100000;
+  const int capacity = 1000000;
+  int counter = 0;
+  int filled = 0;
   char *list[capacity];
 
   if (folder_path != "") {
     printf("main %s\n", folder_path);
-    int filled = filelist(folder_path, list, capacity);
+    filled = filelist(folder_path, list, capacity, counter);
+    printf("filled  %d\n", filled);
   }
-  printf("xxx  %s\n", list[0]);
 }

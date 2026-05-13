@@ -6,13 +6,15 @@
 #include <sys/stat.h> // For stat() or lstat()
 #include <unistd.h>   // For chdir() or realpath()
 
-int filelist(const char *path, char **list, int capacity) {
+int filelist(const char *path, char **list, int capacity, int counter) {
+
+  // printf("%d\n", counter);
 
   DIR *dir;
   struct dirent *entry;
   struct stat statbuf;
   char full_path[1024]; // Buffer for full path (adjust size as needed)
-  int filled = 0;
+  //  int counter = 0;
   // Open the directory
   dir = opendir(path);
   if (dir == NULL) {
@@ -21,7 +23,6 @@ int filelist(const char *path, char **list, int capacity) {
     return 0; // Exit the function if directory cannot be opened
   }
 
-  list[0] = "hello";
   // Read directory entries one by one
   while ((entry = readdir(dir)) != NULL) {
     // Skip "." and ".." entries to avoid infinite loops
@@ -43,15 +44,21 @@ int filelist(const char *path, char **list, int capacity) {
     }
 
     // Print the full path
-    printf("%s\n", full_path);
 
     // If the entry is a directory, recurse into it
     if (S_ISDIR(statbuf.st_mode)) {
-      filelist(full_path, list, capacity); // Recursive call
+      counter = filelist(full_path, list, capacity, counter); // Recursive call
+    } else {
+      counter++;
+      // printf("%d\n", counter);
+      // printf("%s\n", full_path);
+      list[counter] = full_path;
     }
   }
 
   // Close the directory
+
   closedir(dir);
-  return filled;
+
+  return counter;
 }
