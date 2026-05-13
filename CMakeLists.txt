@@ -22,7 +22,7 @@ endif()
 
 
 # Add executable
-add_executable(image_cleaner src/main.c src/lib.c)
+add_executable(image_cleaner src/main.c src/filelist.c)
 
 # Link libraries
 target_link_libraries(image_cleaner

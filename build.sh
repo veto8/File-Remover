@@ -1,8 +1,8 @@
 #!/bin/bash
 
 SOURCE_FILE="src/main.c"
-SOURCE_FILE2="src/lib.c"
-SOURCE_FILE3="src/lib.h"
+SOURCE_FILE2="src/filelist.c"
+SOURCE_FILE3="src/filelist.h"
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 run_build_and_execute() {
@@ -25,7 +25,7 @@ fi
 run_build_and_execute
 
 # Monitor the source file for changes
-while inotifywait -e modify "$SOURCE_FILE" "$SOURCE_FILE2" "$SOURCE_FILE3"; do
+while inotifywait -e modify "src/"; do
   echo "...changed"
   run_build_and_execute
 done
