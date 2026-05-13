@@ -1,0 +1,29 @@
+## Create Debian Package Structure
+```
+dh_make -i --createorig -e info@myridia.com -c gpl3 -y 
+```
+## Build the Package
+```
+dpkg-buildpackage -us -uc -b
+
+```
+
+## Install the deb package into the os with apt, it will install all depedencies as well
+```
+apt install -f  ./ftl-maker_1.1-1_all.deb
+```
+### Or Install the deb package into the os with dpkg
+```
+sudo dpkg -i ftl-maker_1.2-1_all.deb 
+```
+
+
+## Review the installed files of the installed deb package
+```
+dpkg -L ftl-maker
+```
+
+## Remove the deb package from the os
+```
+sudo apt-get remove ftl-maker  --purge
+```
