@@ -1,4 +1,4 @@
-#include "filelist.h"
+#include "list_diff.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,10 +6,13 @@
 #include <sys/stat.h> // For stat() or lstat()
 #include <unistd.h>   // For chdir() or realpath()
 
-const char **listdiff(const char **list1, size_t n1, const char **list2,
-                      size_t n2, size_t *out_count) {
+const char **find_missing(const char **list1, size_t n1, const char **list2,
+                          size_t n2, size_t *out_count) {
+  int counter = 0;
+
   const char **result = malloc(n1 * sizeof(char *));
   size_t count = 0;
+
   for (size_t i = 0; i < n1; i++) {
     int found = 0;
     for (size_t j = 0; j < n2; j++) {
@@ -22,6 +25,7 @@ const char **listdiff(const char **list1, size_t n1, const char **list2,
       result[count++] = list1[i];
   }
   *out_count = count;
+
   return result;
 
   /*
