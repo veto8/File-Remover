@@ -49,4 +49,8 @@ int main(int argc, char *argv[]) {
   const char *url = "http://sapir.salamander-jewelry.net/picture_path/name";
   size_t counter;
   const char **l = curl_list(url, &counter);
+  printf("%d\n", counter);
+  for (size_t i = 0; i < counter; i++) {
+    printf("%d\n", i);
+  }
 }

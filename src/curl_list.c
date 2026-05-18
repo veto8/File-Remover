@@ -27,15 +27,13 @@ static size_t write_memory_callback(void *contents, size_t size, size_t nmemb,
 
 const char **curl_list(const char *url, size_t *counter) {
   printf("%s\n", url);
-
+  size_t count = 0;
   const char **result = malloc(10000 * sizeof(char *));
 
   char *translation = NULL;
 
   CURL *curl;
   CURLcode res;
-  struct MemoryStruct chunk;
-
   struct MemoryStruct chunk;
   chunk.memory = NULL;
 
@@ -62,30 +60,15 @@ const char **curl_list(const char *url, size_t *counter) {
       } else {
 
         // json_t *translated_text = json_object_get(root);
-        // size_t len = json_array_size(root);
-        // for (size_t i = 0; i < len; i++) {
-        //  json_t *elem = json_array_get(root, i);
-        //    const char *str = json_string_value(elem);
-        //}
-
-        /*
-        if (translated_text) {
-          if (json_is_string(translated_text)) {
-            const char *translation_str = json_string_value(translated_text);
-            translation = strdup(translation_str);
-            if (translation == NULL) {
-              fprintf(stderr, "Error: not allocate memory.\n");
-              goto cleanup_json;
-            }
-          } else {
-            fprintf(stderr, "Error: is not a string.\n");
-            goto cleanup_json;
-          }
-        } else {
-          fprintf(stderr, "Error: field not found.\n");
-          goto cleanup_json;
+        size_t len = json_array_size(root);
+        for (size_t i = 0; i < len; i++) {
+          json_t *elem = json_array_get(root, i);
+          const char *str = json_string_value(elem);
+          // printf("%s\n", str);
+          result[i] = str;
+          count++;
         }
-        */
+
       cleanup_json:
         json_decref(root);
       }
@@ -119,5 +102,6 @@ const char **curl_list(const char *url, size_t *counter) {
   }
   *out_count = count;
   */
+  *counter = count;
   return result;
 }
