@@ -22,6 +22,20 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  // *******************************************************************
+  // Get the first list
+
+  const char *url = "http://sapir.salamander-jewelry.net/picture_path/name";
+  size_t counter;
+  const char **list1 = curl_list(url, &counter);
+  printf("list1:  %dx \n", counter);
+  // for (size_t i = 0; i < counter; i++) {
+  //   printf("%s\n", list2[i]);
+  //  }
+
+  // *******************************************************************
+  // Get the second list
+
   /*
   const int capacity = 1000000;
   int counter = 0;
@@ -46,11 +60,4 @@ int main(int argc, char *argv[]) {
     // printf("%s\n", diff[i]);
   }
   */
-  const char *url = "http://sapir.salamander-jewelry.net/picture_path/name";
-  size_t counter;
-  const char **l = curl_list(url, &counter);
-  printf("%d\n", counter);
-  for (size_t i = 0; i < counter; i++) {
-    printf("%d\n", i);
-  }
 }
