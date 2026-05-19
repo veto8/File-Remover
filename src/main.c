@@ -22,40 +22,42 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  const int capacity = 1000000;
+  /********************************************************************/
+  const int capacity = 120000;
   int counter1 = 0;
   int c1 = 0;
-  char *list1[capacity];
-
+  // char *list1[capacity];
+  char **list1 = malloc(capacity * sizeof(char *));
   if (folder_path != "") {
     printf("main %s\n", folder_path);
     c1 = filelist(folder_path, list1, capacity, counter1);
-    printf("list1:  %d\n", c1);
+    // printf("List1:  %d\n", c1);
   }
 
-  // *******************************************************************
-  // Get list2
+  //  for (size_t i = 0; i < c1; i++) {
+  //    printf("%s\n", list1[i]);
+  //}
+
+  /*******************************************************************/
 
   const char *url = "http://sapir.salamander-jewelry.net/picture_path/name";
   size_t c2;
   char **list2 = curl_list(url, &c2);
-  printf("list2:  %d \n", c2);
-  // for (size_t i = 0; i < counter; i++) {
-  //   printf("%s\n", list2[i]);
-  //  }
+  // printf("List2:  %d \n", c2);
 
-  // *******************************************************************
-  // Get the second list
-
-  // *******************************************************************
+  /*******************************************************************/
 
   const char *a[] = {"apple", "banana", "cherry", "date"};
   const char *b[] = {"banana", "date", "fig"};
-  size_t count;
+  size_t c3;
   // const char **diff = find_missing(a, 4, b, 3, &count);
+
   const char **diff =
-      find_missing((const char **)list1, c1, (const char **)list2, c2, &count);
-  // printf("diff:  %d\n", count);
+      find_missing((const char **)list1, c1, (const char **)list2, c2, &c3);
+
+  printf("List1:  %d \n", c1);
+  printf("List2:  %d \n", c2);
+  printf("Diff:  %d\n", c3);
 
   // const char **diff = find_missing(list2, c2, list1, c1, &count);
   // for (size_t i = 0; i < count; i++) {

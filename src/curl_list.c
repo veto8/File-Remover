@@ -28,7 +28,7 @@ static size_t write_memory_callback(void *contents, size_t size, size_t nmemb,
 char **curl_list(const char *url, size_t *counter) {
   printf("%s\n", url);
   size_t count = 0;
-  char **result = malloc(10000 * sizeof(char *));
+  char **result = malloc(100000 * sizeof(char *));
 
   char *translation = NULL;
 
@@ -65,7 +65,7 @@ char **curl_list(const char *url, size_t *counter) {
           json_t *elem = json_array_get(root, i);
           const char *str = json_string_value(elem);
           // printf("%s\n", str);
-          result[i] = str;
+          result[i] = strdup(str);
           count++;
         }
 
@@ -84,24 +84,6 @@ char **curl_list(const char *url, size_t *counter) {
 
   free(chunk.memory);
 
-  // char url[256]; // Adjust size as needed
-
-  /*
-  size_t count = 0;
-
-  for (size_t i = 0; i < n1; i++) {
-    int found = 0;
-    for (size_t j = 0; j < n2; j++) {
-      if (strcmp(list1[i], list2[j]) == 0) {
-        found = 1;
-        break;
-      }
-    }
-    if (!found)
-      result[count++] = list1[i];
-  }
-  *out_count = count;
-  */
   *counter = count;
   return result;
 }
