@@ -9,8 +9,9 @@
 
 int remove_file(const char *path) {
   int ok = 0;
-
+  // printf("%s\n", path);
   /***
+
 
   DIR *dir;
   struct dirent *entry;

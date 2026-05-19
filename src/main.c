@@ -57,6 +57,8 @@ int main(int argc, char *argv[]) {
   printf("Diff:  %d\n", c3);
 
   for (size_t i = 0; i < 10; i++) {
+    // int ok = remove_file(diff[i]);
+
     printf("%s\n", diff[i]);
   }
 }
