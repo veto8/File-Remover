@@ -9,6 +9,7 @@
 
 int remove_file(const char *path) {
   int ok = 0;
+
   /***
 
   DIR *dir;

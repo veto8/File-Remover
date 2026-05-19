@@ -14,10 +14,9 @@ run_build_and_execute() {
 
 # Check if inotifywait is installed
 if ! command -v inotifywait &>/dev/null; then
-  echo "inotifywait is not installed. Please install it (e.g., sudo apt-get install inotify-tools)."
+  echo "inotifywait is not installed. sudo apt-get install inotify-tools"
   exit 1
 fi
-
 
 # Initial build and execution
 run_build_and_execute
