@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)  
-project(image_cleander)
+project(file_remover)
 
 # Find the curl library
 find_package(CURL REQUIRED)
@@ -22,10 +22,10 @@ endif()
 
 
 # Add executable
-add_executable(image_cleaner src/main.c src/filelist.c src/list_diff.c src/curl_list.c src/remove_file.c )
+add_executable(file_remover src/main.c src/filelist.c src/list_diff.c src/curl_list.c src/remove_file.c )
 
 # Link libraries
-target_link_libraries(image_cleaner
+target_link_libraries(file_remover 
   CURL::libcurl
   jansson
 )
