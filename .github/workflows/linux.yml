@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   build:
-    if: github.repository_owner == 'myridiax'
+    if: github.repository_owner == 'myridia'
     runs-on: ubuntu-latest
     steps:
       - name: Dependencies
@@ -29,13 +29,13 @@ jobs:
         run: |
          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
          cmake --build build       
-         mv build/ftl_maker ftl_maker  
+         mv build/file_remover file_remover
 
       - name: Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: 'ftl_maker'
+          file: 'file_remover'
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
