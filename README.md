@@ -22,3 +22,11 @@ Any file in the local folder not present in this list gets deleted.
 ```bash
 ./build.sh
 ```
+
+
+## Extra Repository ##
+```
+ git remote add codeberg ssh://git@codeberg.org/veto/File-Remover
+ git push codeberg -f
+
+```
